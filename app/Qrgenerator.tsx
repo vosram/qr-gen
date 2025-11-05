@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useQRCode } from "next-qrcode";
 import { useForm, type SubmitHandler } from "react-hook-form";
 import styles from "@/app/qrgen.module.css";
@@ -26,8 +26,21 @@ export default function Qrgenerator() {
     register,
     handleSubmit,
     //formState: { errors },
-    watch,
+    subscribe,
+    watch
   } = useForm<Inputs>();
+
+  useEffect(() => {
+    const callback = subscribe({
+      name: ["link"],
+      exact: true,
+      formState: {
+        values: true
+      },
+      callback: ({ values }) => { setValToQr(values.link) }
+    })
+    return () => callback()
+  }, [subscribe])
 
   const onSubmit: SubmitHandler<Inputs> = (data) => {
     setValToQr(data.link);
