@@ -19,7 +19,7 @@ export default function Home() {
           <p className="text-slate-900">
             This QR Code generator is made by{" "}
             <a
-              href="https://www.oddstopmedia.com/about"
+              href="https://www.iamvosram.com"
               target="_blank"
               className="text-emerald-700 underline underline-offset-2 hover:text-amber-500"
             >
